@@ -13,5 +13,6 @@
 void mLib_SpiInitalize(SPI_TypeDef *spi);
 void mLib_SpiTransmitByte(SPI_TypeDef *spi, uint8_t data);
 uint8_t mLib_SpiReceiveByte(SPI_TypeDef *spi);
+uint8_t mLib_SpiTransmitReceiveByte(SPI_TypeDef *spi, uint8_t data);
 
 #endif /* INC_MLIB_SPI_H_ */

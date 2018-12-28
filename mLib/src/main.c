@@ -35,7 +35,8 @@ SOFTWARE.
 /* Private variables */
 /* Private function prototypes */
 /* Private functions */
-
+#define GYRO_CS_HIGH	GPIOC->BSRRL = 2;
+#define GYRO_CS_LOW		GPIOC->BSRRH = 2;
 /**
 **===========================================================================
 **
@@ -60,6 +61,9 @@ int main(void)
   /* TODO - Add your application code here */
   RCC->APB2ENR|= RCC_APB2ENR_SPI5EN;
   RCC->AHB1ENR |= RCC_AHB1ENR_GPIOFEN | RCC_AHB1ENR_GPIOCEN;
+
+
+
   /*	SPI5 GPIO Initalize
    * 	SCK 	<->	 	PF7
    * 	MISO 	<-> 	PF8
@@ -68,13 +72,20 @@ int main(void)
    * 	SPI5	<->		AF5
    */
   GPIOF->MODER |= GPIO_MODER_MODER7_1 | GPIO_MODER_MODER8_1 | GPIO_MODER_MODER9_1;
-  GPIOF->AFR[0] |= GPIO_AF_SPI5 << 28;						// PF7
-  GPIOF->AFR[1] |= GPIO_AF_SPI5 << 0 | GPIO_AF_SPI5 << 4;	// PF8, PF9
-
-
+  GPIOF->AFR[0] |= 5 << 28;						// PF7
+  GPIOF->AFR[1] |= 5 << 0 | 5 << 4;				// PF8, PF9
   mLib_SpiInitalize(SPI5);
-  mLib_SpiTransmitByte(SPI5, 0x11);
-  mLib_SpiTransmitByte(SPI5, 0x22);
+
+  /*
+   * 		Gyro SPI chip selct pin init
+   * 		CS	<-> PC1
+   */
+  GPIOC->MODER |= GPIO_MODER_MODER1_0;
+  uint8_t spi_receive[2];
+  GYRO_CS_LOW;
+  spi_receive[0] = mLib_SpiTransmitReceiveByte(SPI5, 0x8f);
+  spi_receive[1] = mLib_SpiTransmitReceiveByte(SPI5, 0x22);
+  GYRO_CS_HIGH;
   /* Infinite loop */
   while (1)
   {
