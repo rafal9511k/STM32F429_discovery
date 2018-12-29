@@ -18,5 +18,6 @@ typedef struct{
 
 extern fontType_t font_SmallFont;
 extern fontType_t font_BigFont;
+extern fontType_t font_Ubuntu;
 
 #endif /* INC_FONTS_H_ */

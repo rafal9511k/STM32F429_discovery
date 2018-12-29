@@ -76,7 +76,7 @@ int main(void)
 
   LCD_Initalize();
   LCD_FillAll(0xf1);
-  LCD_PutString("TEST!! _ Test??[]", 10, 10, &font_BigFont, 0x00);
+  LCD_PutString("!ABC", 10, 10, &font_Ubuntu, 0x00);
 
   /* Infinite loop */
   while (1)

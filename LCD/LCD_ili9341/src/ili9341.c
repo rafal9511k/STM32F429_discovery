@@ -259,7 +259,7 @@ void LCD_PutChar(char c, uint16_t x, uint16_t y, fontType_t *font, uint16_t colo
 	uint8_t columnSpaceing = bytesWidth;
 	for(uint8_t k=0; k<bytesWidth; k++){
 		for(uint8_t i=0; i<font->FontHeight; i++){
-			for(uint8_t j=0; j<font->FontWidth; j++){
+			for(uint8_t j=0; j<8; j++){
 				if((*(font->FontData + ((characterSpacing)*(c-32))+(columnSpaceing*i)+k)) & 0x80 >> j){
 					LCD_DrawPixel(j+x+(k*8), i+y, color);
 				}
