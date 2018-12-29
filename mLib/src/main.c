@@ -31,6 +31,7 @@ SOFTWARE.
 #include "stm32f4xx.h"
 #include "../mLib/inc/mLib_spi.h"
 
+
 /* Private macro */
 /* Private variables */
 /* Private function prototypes */
@@ -59,8 +60,8 @@ int main(void)
   */
 
   /* TODO - Add your application code here */
-  RCC->APB2ENR|= RCC_APB2ENR_SPI5EN;
-  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOFEN | RCC_AHB1ENR_GPIOCEN;
+  RCC->APB2ENR |= RCC_APB2ENR_SPI5EN;
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOFEN | RCC_AHB1ENR_GPIOCEN | RCC_AHB1ENR_GPIODEN;
 
 
 
@@ -81,11 +82,15 @@ int main(void)
    * 		CS	<-> PC1
    */
   GPIOC->MODER |= GPIO_MODER_MODER1_0;
+
   uint8_t spi_receive[2];
   GYRO_CS_LOW;
   spi_receive[0] = mLib_SpiTransmitReceiveByte(SPI5, 0x8f);
   spi_receive[1] = mLib_SpiTransmitReceiveByte(SPI5, 0x22);
   GYRO_CS_HIGH;
+
+
+
   /* Infinite loop */
   while (1)
   {

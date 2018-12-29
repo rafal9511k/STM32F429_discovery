@@ -16,6 +16,7 @@ void mLib_SpiInitalize(SPI_TypeDef *spi){
 	/*	Software Slave Managment, set SSI , clk/div, master mode	*/
 	spi->CR1 = SPI_CR1_SSM | SPI_CR1_SSI | SPI_CR1_BR_0 | SPI_CR1_BR_1 | SPI_CR1_MSTR;
 	spi->CR1 |= SPI_CR1_SPE;
+
 }
 
 void mLib_SpiTransmitByte(SPI_TypeDef *spi, uint8_t data){
