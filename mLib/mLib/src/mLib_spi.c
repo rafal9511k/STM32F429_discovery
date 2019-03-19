@@ -8,6 +8,7 @@
 #include "../inc/mLib_spi.h"
 /*
  *
+ *
  * 		8 bit data format
  * 		clk / 4
  *
