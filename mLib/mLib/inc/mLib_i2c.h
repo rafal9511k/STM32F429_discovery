@@ -11,5 +11,6 @@
 #include "stm32f4xx.h"
 
 void mLib_I2cInitalize(I2C_TypeDef *i2c);
+void mlib_I2cTransmitBytes(I2C_TypeDef *i2c, uint8_t address, uint8_t *data, uint8_t length);
 
 #endif /* INC_MLIB_I2C_H_ */

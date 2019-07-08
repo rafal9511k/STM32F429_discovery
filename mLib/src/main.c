@@ -30,6 +30,7 @@ SOFTWARE.
 /* Includes */
 #include "stm32f4xx.h"
 #include "../mLib/inc/mLib_spi.h"
+#include "../mLib/inc/mLib_i2c.h"
 
 
 /* Private macro */
@@ -107,11 +108,16 @@ int main(void)
    *
    * 	I2C2 	<->		AF4
    */
-  GPIOF->MODER |= GPIO_MODER_MODER0_1 | GPIO_MODER_MODER0_1;
+  GPIOF->MODER |= GPIO_MODER_MODER0_1 | GPIO_MODER_MODER1_1;
+
+  GPIOF->OTYPER |= GPIO_ODR_ODR_0 | GPIO_ODR_ODR_1;
+  GPIOF->PUPDR |= GPIO_PUPDR_PUPDR0_0 | GPIO_PUPDR_PUPDR1_0;
   GPIOF->AFR[0] |= 4 << 0 | 4 << 4;
 
+  uint8_t i2c_testData[] = {1, 2, 3, 4, 99};
+
   mLib_I2cInitalize(I2C2);
-  mlib_I2cTransmitByte(I2C2, 0xcc);
+  mlib_I2cTransmitBytes(I2C2, 0x0e, i2c_testData, 5);
 
   /* Infinite loop */
   while (1)
