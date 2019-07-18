@@ -48,7 +48,7 @@ SOFTWARE.
 */
 int main(void)
 {
-  int i = 0;
+   int i = 0;
 
   /**
   *  IMPORTANT NOTE!
@@ -114,10 +114,11 @@ int main(void)
   GPIOF->PUPDR |= GPIO_PUPDR_PUPDR0_0 | GPIO_PUPDR_PUPDR1_0;
   GPIOF->AFR[0] |= 4 << 0 | 4 << 4;
 
-  uint8_t i2c_testData[] = {1, 2, 3, 4, 99};
-
+  uint8_t i2c_testData[] = {0x00};
+  uint8_t i2c_buffer[16];
   mLib_I2cInitalize(I2C2);
-  mlib_I2cTransmitBytes(I2C2, 0x0e, i2c_testData, 5);
+  mlib_I2cTransmitBytes(I2C2, 0x0e, i2c_testData, 1);
+  mLib_I2cRecieveBytes(I2C2, 0x0e, i2c_buffer, 16);
 
   /* Infinite loop */
   while (1)
