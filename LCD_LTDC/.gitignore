@@ -1,0 +1,5 @@
+/Debug/
+/Drivers/
+/LCD_LTDC_HAL.ioc
+/LCD_LTDC_HAL.elf.launch
+/STM32F429ZI_FLASH.ld
