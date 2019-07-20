@@ -18,19 +18,10 @@
   */
 
 #include "main.h"
-#define LCD_HSYNC	10
-#define LCD_HFP 	10		// Horizontal front porch
-#define	LCD_HBP		20		// Horizontal back porch
-#define LCD_VSYNC	2
-#define LCD_VFP 	2		// Vertical front porch
-#define	LCD_VBP	 	2		// Vertical back porch
-#define LCD_WIDTH	240
-#define LCD_HEIGHT	320
-#define LCD_PIXELS	LCD_WIDTH*LCD_HEIGHT
 
 
 void SystemClock_Config(void);
-void LCD_LtdcInit(uint16_t *layer1_adds);
+
 
 
 int main(void)
@@ -38,27 +29,44 @@ int main(void)
   HAL_Init();
   SystemClock_Config();
   RCC->APB2ENR |= RCC_APB2ENR_LTDCEN; 	// clk enable LTDC;
+  RCC->APB2ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN
+		  | RCC_AHB1ENR_GPIODEN | RCC_AHB1ENR_GPIOGEN;		// LTDC ports;
 
-
+  GPIO_InitTypeDef ltdc_gpio;
+  ltdc_gpio.Mode = GPIO_MODE_AF_PP;
+  ltdc_gpio.Pull = GPIO_NOPULL;
+  ltdc_gpio.Speed = GPIO_SPEED_FAST;
+  ltdc_gpio.Alternate = GPIO_AF9_LTDC;
+  /*
+   * 	GPIOA
+   */
+  ltdc_gpio.Pin = GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6 | GPIO_PIN_11 | GPIO_PIN_12;
+  HAL_GPIO_Init(GPIOA,&ltdc_gpio);
+  /*
+   * 	GPIOB
+   */
+  ltdc_gpio.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_9 |
+		  GPIO_PIN_11 | GPIO_PIN_12;
+  HAL_GPIO_Init(GPIOB,&ltdc_gpio);
+  /*
+   * 	GPIOC
+   */
+  ltdc_gpio.Pin = GPIO_PIN_2 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_10;
+  HAL_GPIO_Init(GPIOC,&ltdc_gpio);
+  /*
+   * 	GPIOD
+   */
+  ltdc_gpio.Pin = GPIO_PIN_3 | GPIO_PIN_6 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13;
+  HAL_GPIO_Init(GPIOD,&ltdc_gpio);
+  /*
+   * 	GPIOG
+   */
+  ltdc_gpio.Pin = GPIO_PIN_7 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12;
+  HAL_GPIO_Init(GPIOF, &ltdc_gpio);
+  LCD_Initalize();
+  LCD_LtdcInit(NULL);
   while (1){
   }
-}
-void LCD_LtdcInit(uint16_t *layer1_adds){
-	LTDC->SSCR |= LCD_HSYNC-1 << LTDC_SSCR_HSW_Pos | LCD_VSYNC-1 << LTDC_SSCR_VSH_Pos;	// HSYNC | VSYNC
-	LTDC->BPCR |= LCD_HSYNC+LCD_HBP-1 << LTDC_BPCR_AHBP_Pos | LCD_VSYNC+LCD_VBP-1 << LTDC_BPCR_AVBP_Pos; 	// Horizontal | Vertical back porch
-	LTDC->AWCR |= LCD_HSYNC+LCD_HBP+LCD_WIDTH-1 << LTDC_AWCR_AAW_Pos | LCD_VSYNC+LCD_VBP+LCD_HEIGHT-1 << LTDC_AWCR_AAH_Pos;	// Active Width | Height
-	LTDC->TWCR |= LCD_HSYNC+LCD_HBP+LCD_WIDTH+LCD_HFP-1 << LTDC_TWCR_TOTALW_Pos |
-			LCD_VSYNC+LCD_VFP+LCD_HEIGHT+LCD_VBP << LTDC_TWCR_TOTALH_Pos;	// Total width \ height
-
-	LTDC_Layer1->WHPCR |= LCD_HSYNC+LCD_HBP << LTDC_LxWHPCR_WHSPPOS_Pos | LCD_HSYNC+LCD_HBP+LCD_WIDTH-1 << LTDC_LxWHPCR_WHSTPOS_Pos;
-	LTDC_Layer1->WVPCR |= LCD_VSYNC+LCD_VBP << LTDC_LxWVPCR_WVSPPOS_Pos | LCD_VSYNC+LCD_VBP+LCD_HEIGHT-1 << LTDC_LxWVPCR_WVSTPOS_Pos;
-	LTDC_Layer1->PFCR |= 0x02;		// RGB565
-	LTDC_Layer1->CFBAR = layer1_adds;
-	LTDC_Layer1->CFBLR |= LCD_WIDTH*2 << LTDC_LxCFBLR_CFBP_Pos | LCD_WIDTH*2+3 << LTDC_LxCFBLR_CFBLL_Pos;	// Number of bytes per line | +3
-	LTDC_Layer1->CFBLNR |= LCD_HEIGHT << LTDC_LxCFBLNR_CFBLNBR_Pos;		// line number
-
-	LTDC->GCR |= LTDC_GCR_LTDCEN;		// LTDC enable
-	LTDC_Layer1->CR |= LTDC_LxCR_LEN;	// layer 1 enable
 }
 
 
