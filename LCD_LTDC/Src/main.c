@@ -19,6 +19,7 @@
 
 #include "main.h"
 
+#include "../LCD_ili9341_LTDC/inc/ltdc.h"
 
 void SystemClock_Config(void);
 
