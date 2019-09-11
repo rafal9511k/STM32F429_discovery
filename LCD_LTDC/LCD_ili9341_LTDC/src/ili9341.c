@@ -17,6 +17,7 @@ void LCD_Initalize(void){
 //	GPIO_SetBits(RST_port, RST_pin);
 //	GPIO_SetBits(CSX_port, CSX_pin);
 //	GPIO_SetBits(DCX_port, DCX_pin);
+	/*
 	ILI9341_Send_Cmd(ILI9341_RESET);
 	for(int i = 0; i<0xff; i++){
 		i++;
@@ -79,7 +80,18 @@ void LCD_Initalize(void){
 	ILI9341_Send_Data(0x3f);
 	ILI9341_Send_Cmd(ILI9341_GAMMA);
 	ILI9341_Send_Data(0x01);
-
+	ILI9341_Send_Cmd(ILI9341_INTERFACE);
+	ILI9341_Send_Data(0x01);
+	ILI9341_Send_Data(0x00);
+	ILI9341_Send_Data(0x06);
+	ILI9341_Send_Cmd(ILI9341_GRAM);
+	for(int i = 0; i<0xff; i++){
+		i++;
+	}
+	ILI9341_Send_Cmd(ILI9341_GAMMA);
+	for(int i = 0; i<0xff; i++){
+		i++;
+	}
 
 
 	ILI9341_Send_Cmd(ILI9341_PGAMMA);
@@ -115,6 +127,125 @@ void LCD_Initalize(void){
 	}
 	ILI9341_Send_Cmd(ILI9341_DISPLAY_ON);
 	ILI9341_Send_Cmd(ILI9341_GRAM);
+	*/
+	ILI9341_Send_Cmd(ILI9341_RESET);
+		for(int i = 0; i<0xff; i++){
+			i++;
+		}
+		ILI9341_Send_Cmd(ILI9341_POWERB);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0xc1);
+		ILI9341_Send_Data(0x30);
+		ILI9341_Send_Cmd(ILI9341_POWER_SEQ);
+		ILI9341_Send_Data(0x64);
+		ILI9341_Send_Data(0x03);
+		ILI9341_Send_Data(0x12);
+		ILI9341_Send_Data(0x81);
+		ILI9341_Send_Cmd(ILI9341_DTCA);
+		ILI9341_Send_Data(0x85);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0x78);
+		ILI9341_Send_Cmd(ILI9341_POWERA);
+		ILI9341_Send_Data(0x39);
+		ILI9341_Send_Data(0x2c);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0x34);
+		ILI9341_Send_Data(0x02);
+		ILI9341_Send_Cmd(ILI9341_PRC);
+		ILI9341_Send_Data(0x20);
+		ILI9341_Send_Cmd(ILI9341_DTCB);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Cmd(ILI9341_FRC);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0x1b);
+		ILI9341_Send_Cmd(ILI9341_DFC);
+		ILI9341_Send_Data(0x0a);
+		ILI9341_Send_Data(0xa2);
+		ILI9341_Send_Cmd(ILI9341_POWER1);
+		ILI9341_Send_Data(0x10);
+		ILI9341_Send_Cmd(ILI9341_POWER2);
+		ILI9341_Send_Data(0x10);
+		ILI9341_Send_Cmd(ILI9341_VCOM1);
+		ILI9341_Send_Data(0x45);
+		ILI9341_Send_Data(0x15);
+		ILI9341_Send_Cmd(ILI9341_VCOM2);
+		ILI9341_Send_Data(0x90);
+		ILI9341_Send_Cmd(ILI9341_MAC);
+		ILI9341_Send_Data(0xc8);
+		ILI9341_Send_Cmd(ILI9341_3GAMMA_EN);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Cmd(ILI9341_RGB_INTERFACE);
+		ILI9341_Send_Data(0xc2);
+		ILI9341_Send_Cmd(ILI9341_DFC);
+		ILI9341_Send_Data(0x0a);
+		ILI9341_Send_Data(0xa7);
+		ILI9341_Send_Data(0x27);
+		ILI9341_Send_Data(0x04);
+		ILI9341_Send_Cmd(ILI9341_COLUMN_ADDR);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0xef);
+		ILI9341_Send_Cmd(ILI9341_PAGE_ADDR);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0x01);
+		ILI9341_Send_Data(0x3f);
+		ILI9341_Send_Cmd(ILI9341_GAMMA);
+		ILI9341_Send_Data(0x01);
+
+		ILI9341_Send_Cmd(ILI9341_INTERFACE);
+		ILI9341_Send_Data(0x01);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0x06);
+
+		ILI9341_Send_Cmd(ILI9341_GRAM);
+		for(int i = 0; i<0xff; i++){
+			i++;
+		}
+		ILI9341_Send_Cmd(ILI9341_GAMMA);
+		for(int i = 0; i<0xff; i++){
+			i++;
+		}
+		ILI9341_Send_Cmd(ILI9341_PGAMMA);
+		ILI9341_Send_Data(0x0f);
+		ILI9341_Send_Data(0x29);
+		ILI9341_Send_Data(0x24);
+		ILI9341_Send_Data(0x02);
+		ILI9341_Send_Data(0x0e);
+		ILI9341_Send_Data(0x09);
+		ILI9341_Send_Data(0x4e);
+		ILI9341_Send_Data(0x78);
+		ILI9341_Send_Data(0x3c);
+		ILI9341_Send_Data(0x09);
+		ILI9341_Send_Data(0x13);
+		ILI9341_Send_Data(0x05);
+		ILI9341_Send_Data(0x17);
+		ILI9341_Send_Data(0x11);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Cmd(ILI9341_NGAMMA);
+		ILI9341_Send_Data(0x00);
+		ILI9341_Send_Data(0x16);
+		ILI9341_Send_Data(0x18);
+		ILI9341_Send_Data(0x04);
+		ILI9341_Send_Data(0x11);
+		ILI9341_Send_Data(0x07);
+		ILI9341_Send_Data(0x31);
+		ILI9341_Send_Data(0x33);
+		ILI9341_Send_Data(0x42);
+		ILI9341_Send_Data(0x05);
+		ILI9341_Send_Data(0x0c);
+		ILI9341_Send_Data(0x0a);
+		ILI9341_Send_Data(0x28);
+		ILI9341_Send_Data(0x2f);
+		ILI9341_Send_Data(0x0f);
+		ILI9341_Send_Cmd(ILI9341_SLEEP_OUT);
+		for(int i = 0; i<0xff; i++){
+			i++;
+		}
+		ILI9341_Send_Cmd(ILI9341_DISPLAY_ON);
+		ILI9341_Send_Cmd(ILI9341_GRAM);
 }
 void ILI9341_SPI_Init(void){
 	/*
@@ -137,11 +268,11 @@ void ILI9341_SPI_Init(void){
 
 void IL9341_GPIO_Init(void){
 	CSX_port->MODER |= 0x01 << (CSX_pin*2);
-	CSX_port->BSRRL = 0x01 << CSX_pin;
+	CSX_port->BSRR = 0x01 << (CSX_pin);
 	DCX_port->MODER |= 0x01 << (DCX_pin*2);
-	DCX_port->BSRRL = 0x01 << DCX_pin;
+	DCX_port->BSRR = 0x01 << (DCX_pin);
 	RST_port->MODER |= 0x01 << (RST_pin*2);
-	RST_port->BSRRL = 0x01 << RST_pin;
+	RST_port->BSRR = 0x01 << (RST_pin);
 	/*
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC | RCC_AHB1Periph_GPIOD , ENABLE);
 	GPIO_InitTypeDef gpio;
@@ -233,66 +364,68 @@ void LCD_FillAll(uint16_t color){
 		ILI9341_Send_Data(color & 0xff);
 	}
 }
-void LCD_PutChar(char c, uint16_t x, uint16_t y, fontType_t *font, uint16_t color){
-	/*
-	for(int i=0; i<font->FontHeight; i++){
-		for(int j=0; j<font->FontWidth; j++){
-			if((*(font->FontData+(font->FontHeight*(c-32))+i)) & 0x8000>>j){
-				LCD_DrawPixel(j+x, i+y, color);
-			}
-
-		}
-	}
-	*/
-	/*	Bytes per line	*/
-	uint8_t bytesHeight;
-	uint8_t bytesWidth;
-	bytesHeight = font->FontHeight / (sizeof(font->FontHeight)*8);
-	bytesWidth = font->FontWidth / (sizeof(font->FontWidth)*8);
-	if(font->FontHeight % (sizeof(font->FontHeight)*8) > 0){
-		bytesHeight += 1;
-	}
-	if(font->FontWidth % (sizeof(font->FontWidth)*8) > 0){
-		bytesWidth += 1;
-	}
-	uint8_t characterSpacing = bytesHeight * bytesWidth * 8;
-	uint8_t columnSpaceing = bytesWidth;
-	for(uint8_t k=0; k<bytesWidth; k++){
-		for(uint8_t i=0; i<font->FontHeight; i++){
-			for(uint8_t j=0; j<8; j++){
-				if((*(font->FontData + ((characterSpacing)*(c-32))+(columnSpaceing*i)+k)) & 0x80 >> j){
-					LCD_DrawPixel(j+x+(k*8), i+y, color);
-				}
-			}
-		}
-	}
-}
 
 
-void LCD_PutString(char *str, uint16_t x, uint16_t y, fontType_t *font, uint16_t color){
-	while(*str != '\0'){
-		LCD_PutChar(*str, x, y, font, color);
-		str++;
-		x+=font->FontWidth;
+//void LCD_PutChar(char c, uint16_t x, uint16_t y, fontType_t *font, uint16_t color){
+//	///*
+//	for(int i=0; i<font->FontHeight; i++){
+//		for(int j=0; j<font->FontWidth; j++){
+//			if((*(font->FontData+(font->FontHeight*(c-32))+i)) & 0x8000>>j){
+//				LCD_DrawPixel(j+x, i+y, color);
+//			}
+//
+//		}
+//	}
+//	//*/
+//	/*	Bytes per line	*/
+//	uint8_t bytesHeight;
+//	uint8_t bytesWidth;
+//	bytesHeight = font->FontHeight / (sizeof(font->FontHeight)*8);
+//	bytesWidth = font->FontWidth / (sizeof(font->FontWidth)*8);
+//	if(font->FontHeight % (sizeof(font->FontHeight)*8) > 0){
+//		bytesHeight += 1;
+//	}
+//	if(font->FontWidth % (sizeof(font->FontWidth)*8) > 0){
+//		bytesWidth += 1;
+//	}
+//	uint8_t characterSpacing = bytesHeight * bytesWidth * 8;
+//	uint8_t columnSpaceing = bytesWidth;
+//	for(uint8_t k=0; k<bytesWidth; k++){
+//		for(uint8_t i=0; i<font->FontHeight; i++){
+//			for(uint8_t j=0; j<8; j++){
+//				if((*(font->FontData + ((characterSpacing)*(c-32))+(columnSpaceing*i)+k)) & 0x80 >> j){
+//					LCD_DrawPixel(j+x+(k*8), i+y, color);
+//				}
+//			}
+//		}
+//	}
+//}
 
-	}
-}
+
+
+//void LCD_PutString(char *str, uint16_t x, uint16_t y, fontType_t *font, uint16_t color){
+//	while(*str != '\0'){
+//		LCD_PutChar(*str, x, y, font, color);
+//		str++;
+//		x+=font->FontWidth;
+//	}
+//}
 
 inline void __ili9341_set_csx(void){
-	CSX_port->BSRRL = 0x01 << CSX_pin;
+	CSX_port->BSRR = 0x0001 << (CSX_pin);
 }
 inline void __ili9341_set_dcx(void){
-	DCX_port->BSRRL = 0x01 << DCX_pin;
+	DCX_port->BSRR = 0x0001 << (DCX_pin);
 }
 inline void __ili9341_set_rst(void){
-	RST_port->BSRRL = 0x01 << RST_pin;
+	RST_port->BSRR = 0x0001 << (RST_pin);
 }
 inline  void __ili9341_reset_csx(void){
-	CSX_port->BSRRH = 0x01 << CSX_pin;
+	CSX_port->BSRR = 0x0001 << (CSX_pin+16);
 }
 inline void __ili9341_reset_dcx(void){
-	DCX_port->BSRRH = 0x01 << DCX_pin;
+	DCX_port->BSRR = 0x0001 << (DCX_pin+16);
 }
 inline void __ili9341_reset_rst(void){
-	RST_port->BSRRH = 0x01 << RST_pin;
+	RST_port->BSRR = 0x0001 << (RST_pin+16);
 }

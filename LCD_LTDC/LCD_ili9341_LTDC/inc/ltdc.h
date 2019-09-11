@@ -23,10 +23,10 @@
 #define LCD_HEIGHT	320
 #define LCD_PIXELS	LCD_WIDTH*LCD_HEIGHT
 
+void LCD_LtdcInit(uint32_t *layer1_adds, uint32_t *layer2_adds);
 
-
-
-void LCD_LtdcInit(uint16_t *layer1_adds);
-
+void LCD_PutChar(char c, uint16_t *buffer, uint16_t x, uint16_t y, fontType_t *font, uint8_t r, uint8_t g, uint8_t b);
+void LCD_PutString(char *str,uint16_t *buffer,  uint16_t x, uint16_t y, fontType_t *font, uint8_t r, uint8_t g, uint8_t b);
+void __lcd_rgb565_drawPixel(uint16_t *buffer, uint8_t r, uint8_t g, uint8_t b, uint16_t x, uint16_t y);
 
 #endif /* LTDC_H_ */

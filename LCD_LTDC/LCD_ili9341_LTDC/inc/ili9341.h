@@ -35,8 +35,8 @@ void ILI9341_Send_Data(uint8_t data);
 void ILI9341_Set_Cursor_Position(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 void LCD_DrawPixel(uint16_t x, uint16_t y, uint16_t color);
 void LCD_FillAll(uint16_t color);
-void LCD_PutChar(char c, uint16_t x, uint16_t y, fontType_t *font, uint16_t color);
-void LCD_PutString(char *str, uint16_t x, uint16_t y, fontType_t *font, uint16_t color);
+//void LCD_PutChar(char c, uint16_t x, uint16_t y, fontType_t *font, uint16_t color);
+//void LCD_PutString(char *str, uint16_t x, uint16_t y, fontType_t *font, uint16_t color);
 
 void __ili9341_set_csx(void);
 void __ili9341_set_dcx(void);
