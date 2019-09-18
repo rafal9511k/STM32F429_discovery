@@ -5,7 +5,7 @@
  *      Author: rafal
  */
 
-#include "../LCD_ili9341_LTDC/inc/frameBuffer.h"
+#include "../inc/frameBuffer.h"
 
 
 

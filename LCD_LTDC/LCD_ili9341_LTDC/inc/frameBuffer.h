@@ -8,8 +8,8 @@
 #ifndef INC_FRAMEBUFFER_H_
 #define INC_FRAMEBUFFER_H_
 
-#include "../LCD_ili9341_LTDC/inc/fonts.h"
-#include "../LCD_ili9341_LTDC/inc/ltdc.h"
+#include "../inc/fonts.h"
+#include "../inc/ltdc.h"
 #include "stm32f429xx.h"
 #include "stdlib.h"
 
